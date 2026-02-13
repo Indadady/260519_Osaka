@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="scroll-smooth">
 <head>
     <!-- 🚨 Google Analytics (GA4) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-JLH9GD9SVR"></script>
@@ -54,28 +54,36 @@
 </head>
 <body class="antialiased pb-20 md:pb-0">
 
-    <!-- Header -->
-    <header class="bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-50">
-        <nav class="container mx-auto px-4 flex items-center justify-between h-16">
-            <div class="flex items-center gap-2">
+    <!-- Header (Sticky Navigation) -->
+    <header class="bg-white/95 backdrop-blur-md shadow-md sticky top-0 z-50 transition-all duration-300">
+        <nav class="container mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3 shrink-0">
                 <a href="http://tourmaker.kr" target="_blank">
                     <img src="https://blogger.googleusercontent.com/img/a/AVvXsEitI-Z-hD82keOJ1AqHw-VTZjpw2U-O5UjtV9h3zblyG0wjsVfBWe9X9o0Q_Spctrt7krkd9qXO0xKTmGJLw4gyMZrRqpshKMFttnyx6OcC8-IGz3XLUZpGQOnRqVdol8jz5HuoDLqsEifnVRhcjUJHm13Sz8JrX9aPswMNUwZPvGtJEnQjhc2PiXlo-B8" alt="Tourmaker" class="h-8">
                 </a>
                 <span id="d-day-badge" class="hidden bg-blue-600 text-white text-[10px] px-2 py-0.5 rounded-full font-bold animate-pulse"></span>
             </div>
-            <div class="hidden md:flex space-x-6 text-sm font-medium text-slate-600">
-                <a href="#flight" class="hover:text-blue-600">항공/공항</a>
-                <a href="#map-section" class="hover:text-blue-600">여행동선</a>
-                <a href="#schedule" class="hover:text-blue-600">상세일정</a>
-                <a href="#check" class="hover:text-blue-600">준비물</a>
-                <a href="#contact" class="hover:text-blue-600">비상연락</a>
+            
+            <!-- Desktop & Mobile Scrollable Menu -->
+            <div class="flex-1 overflow-x-auto no-scrollbar ml-4 md:ml-8">
+                <div class="flex items-center space-x-1 md:space-x-6 whitespace-nowrap pr-4">
+                    <a href="#home" class="px-3 py-2 text-sm font-bold text-slate-600 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-colors">홈</a>
+                    <a href="#highlights" class="px-3 py-2 text-sm font-bold text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded-lg transition-colors"><i class="fa-solid fa-star mr-1"></i>핵심포인트</a>
+                    <a href="#flight" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-colors">항공/공항</a>
+                    <a href="#visit-japan" class="px-3 py-2 text-sm font-medium text-pink-600 hover:text-pink-800 hover:bg-pink-50 rounded-lg transition-colors"><i class="fa-solid fa-passport mr-1"></i>입국준비</a>
+                    <a href="#map-section" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-colors">여행동선</a>
+                    <a href="#schedule" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-colors">세부일정</a>
+                    <a href="#video" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-colors">영상자료</a>
+                    <a href="#check" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-colors">준비물</a>
+                </div>
             </div>
-            <button onclick="shareLink()" class="p-2 text-slate-500 hover:text-blue-600"><i class="fa-solid fa-share-nodes text-xl"></i></button>
+
+            <button onclick="shareLink()" class="shrink-0 p-2 text-slate-500 hover:text-blue-600 ml-2"><i class="fa-solid fa-share-nodes text-xl"></i></button>
         </nav>
     </header>
 
     <!-- Hero -->
-    <section id="home" class="hero-bg min-h-[65vh] flex items-center justify-center text-center px-4">
+    <section id="home" class="hero-bg min-h-[60vh] flex items-center justify-center text-center px-4">
         <div class="animate-fade-in-up text-white">
             <span class="bg-blue-600/90 px-6 py-2 rounded-full text-lg md:text-xl font-bold mb-6 inline-block border border-white/20 shadow-lg">문곡중학교 해외문화탐방</span>
             <h1 class="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg font-[Nanum Myeongjo]">오사카 · 교토 · 나라<br><span class="text-yellow-400 font-bold">역사의 숨결을 찾아</span></h1>
@@ -83,10 +91,55 @@
         </div>
     </section>
 
-    <!-- 1. Flight & Airport Guide (New) -->
-    <section id="flight" class="py-12 bg-white rounded-t-3xl -mt-10 relative z-10">
+    <!-- Highlights Section -->
+    <section id="highlights" class="py-12 bg-white -mt-8 rounded-t-3xl relative z-10 shadow-[0_-5px_20px_rgba(0,0,0,0.1)]">
         <div class="container mx-auto px-4">
-            <!-- 1. Air Busan Info -->
+            <div class="text-center mb-10">
+                <span class="text-blue-600 font-black tracking-widest text-xs uppercase">SPECIAL POINTS</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-800 mt-2">문곡중학교만을 위한<br class="md:hidden"/> 3가지 특별한 약속</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-14 h-14 bg-indigo-100 rounded-2xl flex items-center justify-center mb-4 text-3xl">
+                        📚
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">깊이 있는 역사 문학 탐방</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        단순 관광이 아닙니다. <span class="text-indigo-600 font-bold">도시샤 대학</span>을 방문하여 윤동주, 정지용 시인의 시비(詩碑)를 둘러보며 민족 시인의 얼을 기립니다.
+                    </p>
+                    <span class="inline-block bg-indigo-600 text-white text-xs px-2 py-1 rounded font-bold">교과서 밖 역사 체험</span>
+                </div>
+
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-14 h-14 bg-orange-100 rounded-2xl flex items-center justify-center mb-4 text-3xl">
+                        🍱
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">학생 맞춤형 고품격 식사</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        저가형 단체 식당을 지양합니다. 한창 성장기인 학생들을 위해 <span class="text-orange-600 font-bold">맛과 영양을 모두 고려한</span> 현지 특식과 든든한 식단을 엄선하여 제공합니다.
+                    </p>
+                    <span class="inline-block bg-orange-500 text-white text-xs px-2 py-1 rounded font-bold">식도락의 도시 오사카</span>
+                </div>
+
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center mb-4 text-3xl">
+                        🛡️
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">안전 제일주의 시스템</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        일본 전문 베테랑 가이드와 인솔자가 전 일정 동행하며, <span class="text-green-600 font-bold">24시간 비상 연락 체계</span>를 가동하여 학부모님이 안심할 수 있는 여행을 만듭니다.
+                    </p>
+                    <span class="inline-block bg-green-600 text-white text-xs px-2 py-1 rounded font-bold">안전 보험 가입</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 1. Flight & Airport Guide -->
+    <section id="flight" class="py-12 bg-slate-50">
+        <div class="container mx-auto px-4">
+            <!-- Air Busan Info -->
             <div class="max-w-5xl mx-auto mb-8">
                 <div class="bg-white rounded-2xl border border-blue-100 shadow-lg overflow-hidden">
                     <div class="bg-blue-50 px-6 py-4 border-b border-blue-100 flex flex-wrap justify-between items-center gap-2">
@@ -97,7 +150,6 @@
                     </div>
                     
                     <div class="p-6 md:p-8">
-                        <!-- Airline PR -->
                         <div class="bg-slate-50 rounded-xl p-4 mb-8 border border-slate-100">
                             <h4 class="font-bold text-slate-800 mb-2 flex items-center gap-2">💡 왜 에어부산인가요?</h4>
                             <p class="text-sm text-slate-600 leading-relaxed">
@@ -107,9 +159,7 @@
                             </p>
                         </div>
 
-                        <!-- Schedule -->
                         <div class="grid md:grid-cols-2 gap-8 divide-y md:divide-y-0 md:divide-x divide-slate-100">
-                            <!-- Departure -->
                             <div class="flex flex-col items-center text-center">
                                 <span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded font-bold mb-3">출국 (인천 → 오사카)</span>
                                 <div class="flex items-center gap-4 w-full justify-center">
@@ -130,7 +180,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Return -->
                             <div class="flex flex-col items-center text-center pt-8 md:pt-0">
                                 <span class="text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded font-bold mb-3">귀국 (오사카 → 인천)</span>
                                 <div class="flex items-center gap-4 w-full justify-center">
@@ -156,7 +205,7 @@
                 </div>
             </div>
 
-            <!-- 2. Airport Guide -->
+            <!-- Airport Guide -->
             <div class="max-w-5xl mx-auto">
                 <div class="bg-white rounded-2xl border border-slate-200 shadow-lg p-6 md:p-8">
                     <h3 class="font-bold text-slate-800 text-lg mb-6 flex items-center gap-2">
@@ -164,33 +213,29 @@
                     </h3>
                     
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
-                        <!-- Step 1 -->
                         <div class="bg-green-50 rounded-xl p-4 border border-green-100 relative group">
                             <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-green-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shadow-md">1</div>
                             <div class="mb-2"><i class="fa-solid fa-clock text-2xl text-green-600"></i></div>
                             <h4 class="font-bold text-slate-800 text-sm">3시간 전 도착</h4>
                             <p class="text-xs text-slate-600 mt-1">공항은 생각보다 넓어요!<br>여유 있게 도착하세요.</p>
                         </div>
-                        <!-- Step 2 -->
                         <div class="bg-green-50 rounded-xl p-4 border border-green-100 relative">
                             <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-green-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shadow-md">2</div>
                             <div class="mb-2"><i class="fa-solid fa-users-rectangle text-2xl text-green-600"></i></div>
                             <h4 class="font-bold text-slate-800 text-sm">제1여객터미널</h4>
                             <p class="text-xs text-slate-600 mt-1">에어부산은 <span class="font-bold text-red-500">T1</span>입니다.<br>선생님 인솔에 집중!</p>
                         </div>
-                        <!-- Step 3 -->
                         <div class="bg-green-50 rounded-xl p-4 border border-green-100 relative">
                             <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-green-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shadow-md">3</div>
                             <div class="mb-2"><i class="fa-solid fa-passport text-2xl text-green-600"></i></div>
                             <h4 class="font-bold text-slate-800 text-sm">보안 검색</h4>
                             <p class="text-xs text-slate-600 mt-1">100ml 초과 액체류 반입 금지.<br>미리 짐을 정리하세요.</p>
                         </div>
-                        <!-- Step 4 -->
                         <div class="bg-green-50 rounded-xl p-4 border border-green-100 relative">
                             <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-green-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shadow-md">4</div>
                             <div class="mb-2"><i class="fa-solid fa-door-open text-2xl text-green-600"></i></div>
                             <h4 class="font-bold text-slate-800 text-sm">탑승 게이트</h4>
-                            <p class="text-xs text-slate-600 mt-1">탑승 마감은 출발 10분 전!<br>늦지 않게 이동하세요.</p>
+                            <p class="text-xs text-slate-600 mt-1"><span class="text-red-600 font-bold">출발 30분 전 도착!</span><br>늦지 않게 미리 이동하세요.</p>
                         </div>
                     </div>
                     <div class="mt-4 text-center text-xs text-slate-400 bg-slate-50 py-2 rounded-lg">
@@ -201,8 +246,57 @@
         </div>
     </section>
 
-    <!-- 2. Google Style Map -->
-    <section id="map-section" class="py-12 bg-slate-50">
+    <!-- [NEW] Visit Japan Web Section (Fact Checked: Integrated QR) -->
+    <section id="visit-japan" class="py-12 bg-pink-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-5xl mx-auto text-center mb-8">
+                <span class="inline-block bg-pink-600 text-white text-xs px-3 py-1 rounded-full font-bold shadow-sm mb-3">일본 입국 필수</span>
+                <h2 class="text-3xl font-bold text-slate-800">비짓재팬웹 (Visit Japan Web)</h2>
+                <p class="text-slate-600 mt-2">입국심사와 세관신고가 <span class="text-pink-600 font-bold">단 하나의 QR코드</span>로 통합되었습니다!</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg border border-pink-100 overflow-hidden">
+                <div class="grid md:grid-cols-2">
+                    <div class="p-8 flex flex-col justify-center items-start">
+                        <h3 class="text-xl font-bold text-slate-800 mb-4">📱 QR코드 하나로 OK!</h3>
+                        <ol class="space-y-4 text-sm text-slate-600 mb-8 text-left w-full">
+                            <li class="flex gap-3 items-start">
+                                <span class="bg-pink-100 text-pink-600 w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs shrink-0">1</span>
+                                <span>아래 버튼을 눌러 비짓재팬웹 사이트에 접속합니다.</span>
+                            </li>
+                            <li class="flex gap-3 items-start">
+                                <span class="bg-pink-100 text-pink-600 w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs shrink-0">2</span>
+                                <span>계정 생성 후 '본인 정보'와 '입국 일정'을 등록합니다.</span>
+                            </li>
+                            <li class="flex gap-3 items-start">
+                                <span class="bg-pink-100 text-pink-600 w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs shrink-0">3</span>
+                                <span><strong class="text-pink-600">입국심사 및 세관신고</strong> 메뉴에서 통합 QR을 발급받습니다.</span>
+                            </li>
+                            <li class="flex gap-3 items-start">
+                                <span class="bg-pink-100 text-pink-600 w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs shrink-0">4</span>
+                                <span>현지 인터넷이 느릴 수 있으니 <strong class="text-slate-800">QR코드 화면을 미리 캡처(스크린샷)</strong>해두세요.</span>
+                            </li>
+                        </ol>
+                        <a href="https://www.vjw.digital.go.jp/" target="_blank" class="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-4 rounded-xl text-center shadow-md transition-colors flex items-center justify-center gap-2">
+                            비짓재팬웹 바로가기 <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                    <div class="bg-pink-50 p-8 flex items-center justify-center border-l border-pink-100">
+                        <div class="text-center">
+                            <div class="bg-white p-4 rounded-xl shadow-sm inline-block mb-4 relative">
+                                <i class="fa-solid fa-qrcode text-8xl text-slate-800"></i>
+                                <div class="absolute -top-2 -right-2 bg-pink-600 text-white text-[10px] font-bold px-2 py-1 rounded-full animate-bounce">통합 QR</div>
+                            </div>
+                            <p class="text-xs text-slate-500 font-medium">이제 입국 심사대와 세관 검사대 모두<br><strong class="text-pink-600">동일한 QR코드</strong>를 제시하면 됩니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map -->
+    <section id="map-section" class="py-12 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-8">
                 <h2 class="text-3xl font-bold text-slate-800 tracking-tight">한눈에 보는 여행 동선</h2>
@@ -211,7 +305,6 @@
             <div class="max-w-5xl mx-auto border border-slate-200 rounded-2xl p-1 shadow-lg bg-white">
                 <div id="map"></div>
             </div>
-            <!-- Map Legend -->
             <div class="max-w-5xl mx-auto mt-4 flex flex-wrap justify-center gap-4 text-xs font-bold text-slate-600">
                 <div class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-blue-600"></span>주요 방문지</div>
                 <div class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-green-600"></span>공항 이동</div>
@@ -220,65 +313,15 @@
         </div>
     </section>
 
-    <!-- 3. Practical Info -->
-    <section id="info" class="py-12 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-                    <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2"><i class="fa-solid fa-cloud-sun text-blue-500"></i> 5월 오사카 날씨</h3>
-                    <div class="space-y-2 text-sm">
-                        <p class="flex justify-between"><span>평균 기온</span><span class="font-bold">15°C ~ 25°C</span></p>
-                        <p class="text-slate-500 text-xs leading-relaxed">여행하기 가장 좋은 쾌적한 봄 날씨입니다. 일교차에 대비한 얇은 겉옷을 준비하세요.</p>
-                    </div>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-                    <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2"><i class="fa-solid fa-yen-sign text-orange-500"></i> 실시간 엔화 환율</h3>
-                    <a href="https://finance.naver.com/marketindex/exchangeDetail.naver?marketindexCd=FX_JPYKRW" target="_blank" class="block bg-slate-100 hover:bg-blue-600 hover:text-white transition-all text-center py-3 rounded-xl font-bold text-sm">
-                        네이버 실시간 환율 확인 <i class="fa-solid fa-chevron-right text-[10px] ml-1"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 4. Culture & History -->
-    <section id="culture" class="py-16 bg-slate-50">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto">
-                <div class="text-center mb-10">
-                    <span class="text-blue-600 font-black tracking-widest text-xs">HUMANITIES GUIDE</span>
-                    <h2 class="text-3xl font-bold mt-2">알고 가면 더 깊어지는 일본 이야기</h2>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="space-y-4">
-                        <div class="bg-indigo-50 p-6 rounded-2xl border border-indigo-100">
-                            <h4 class="font-bold text-indigo-900 mb-2">백제 문화의 숨결, 나라/교토</h4>
-                            <p class="text-sm text-indigo-800/80 leading-relaxed italic">"일본 고대 문화의 뿌리에는 한반도 도래인들의 기술과 예술이 녹아 있습니다. 세계 최대 목조 건축물인 동대사를 보며 조상들의 지혜를 상상해 보세요."</p>
-                        </div>
-                        <div class="bg-red-50 p-6 rounded-2xl border border-red-100">
-                            <h4 class="font-bold text-red-900 mb-2">아픈 역사의 현장, 귀무덤(이총)</h4>
-                            <p class="text-sm text-red-800/80 leading-relaxed italic">"임진왜란 당시 희생된 조선인들의 넋이 잠든 곳입니다. 단순한 관광을 넘어 올바른 역사 의식을 고취하는 소중한 배움의 장입니다."</p>
-                        </div>
-                    </div>
-                    <div class="space-y-4">
-                        <div class="bg-amber-50 p-6 rounded-2xl border border-amber-100">
-                            <h4 class="font-bold text-amber-900 mb-2">도시샤 대학과 윤동주 시인</h4>
-                            <p class="text-sm text-amber-800/80 leading-relaxed italic">"민족 시인 윤동주와 정지용이 공부했던 교정입니다. 하늘과 바람과 별과 시를 읊으며 조국을 그리워했던 그들의 청춘을 마주해 봅니다."</p>
-                        </div>
-                        <div class="bg-blue-50 p-6 rounded-2xl border border-blue-100">
-                            <h4 class="font-bold text-blue-900 mb-2">현대 일본의 심장, 오사카</h4>
-                            <p class="text-sm text-blue-800/80 leading-relaxed italic">"천하의 부엌이라 불리는 식도락의 도시이자 활기찬 상업 도시입니다. 에도 시대부터 이어진 오사카 특유의 에너지를 체험해 보세요."</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- 5. Detailed Schedule -->
     <section id="schedule" class="py-16 bg-white">
         <div class="container mx-auto px-4">
             <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-10">
+                    <h2 class="text-2xl font-bold">세부 일정</h2>
+                    <p class="text-slate-500 text-sm">탭을 눌러 일자별 세부 내용을 확인하세요.</p>
+                </div>
+
                 <div class="flex overflow-x-auto no-scrollbar gap-2 mb-8 justify-start md:justify-center">
                     <button class="tab-btn active shrink-0 px-6 py-3 rounded-2xl border-2 border-blue-600 bg-blue-600 text-white font-bold text-sm transition" onclick="openTab(event, 'day1')">1일차</button>
                     <button class="tab-btn shrink-0 px-6 py-3 rounded-2xl border-2 border-slate-200 bg-white text-slate-500 font-bold text-sm transition" onclick="openTab(event, 'day2')">2일차</button>
@@ -312,6 +355,11 @@
                                 <h4 class="font-bold text-lg">메모리얼 파크 (메리켄 파크)</h4>
                                 <p class="text-slate-500 text-sm mt-1">고베 대지진의 흔적을 보존한 역사와 교훈의 공간</p>
                             </div>
+                            <div class="relative pl-8 border-l-2 border-blue-100">
+                                <div class="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-blue-200"></div>
+                                <h4 class="font-bold text-lg">🍽️ 석식: 현지식</h4>
+                                <p class="text-slate-500 text-sm mt-1">학생들의 입맛을 고려한 깔끔한 현지 식사</p>
+                            </div>
                         </div>
                     </div>
                     <!-- Day 2 -->
@@ -324,19 +372,31 @@
                             </div>
                         </div>
                         <div class="space-y-6">
-                            <div class="bg-indigo-50 p-5 rounded-2xl border border-indigo-100 mb-4">
-                                <h5 class="font-bold text-indigo-900 mb-1 flex items-center gap-2"><i class="fa-solid fa-star text-amber-500"></i> 문학 탐방: 도시샤 대학</h5>
-                                <p class="text-sm text-indigo-800 leading-relaxed">윤동주 · 정지용 시비 탐방 및 교정 탐방. 일제강점기 청년들의 고뇌를 느껴봅니다.</p>
+                            <div class="bg-indigo-50 p-5 rounded-2xl border border-indigo-100 mb-6 shadow-sm">
+                                <h5 class="font-bold text-lg text-indigo-900 mb-2 flex items-center gap-2">
+                                    <i class="fa-solid fa-pen-nib text-indigo-600"></i> 핵심: 도시샤 대학 문학 기행
+                                </h5>
+                                <div class="flex flex-col md:flex-row gap-4">
+                                    <!-- Updated Image -->
+                                    <img src="https://live.staticflickr.com/65535/48004255486_800caf6113_b.jpg" class="rounded-lg w-full md:w-1/3 object-cover h-32 md:h-auto" alt="도시샤대학">
+                                    <div>
+                                        <p class="text-sm text-indigo-800 leading-relaxed font-medium">"별을 노래하는 마음으로"</p>
+                                        <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                                            민족 시인 <strong class="text-indigo-700">윤동주</strong>와 <strong class="text-indigo-700">정지용</strong> 시인이 유학했던 교정을 거닐며 그들의 시비(詩碑)를 찾아봅니다. 일제강점기, 조국을 그리워하며 고뇌했던 청년들의 숨결을 느껴보는 뜻깊은 시간입니다.
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
+                            
                             <div class="relative pl-8 border-l-2 border-amber-100">
                                 <div class="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-amber-600"></div>
                                 <h4 class="font-bold text-lg">귀무덤(이총) & 청수사(기요미즈데라)</h4>
-                                <p class="text-slate-500 text-sm mt-1">역사적 슬픔의 장소와 세계문화유산인 천년 고찰 관람</p>
+                                <p class="text-slate-500 text-sm mt-1">임진왜란의 아픈 역사 현장과 세계문화유산 관람</p>
                             </div>
                             <div class="relative pl-8 border-l-2 border-amber-100">
                                 <div class="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-amber-200"></div>
                                 <h4 class="font-bold text-lg">아라시야마 치쿠린 & 도게츠교</h4>
-                                <p class="text-slate-500 text-sm mt-1">힐링의 대나무 숲길과 전통적인 감성이 가득한 다리</p>
+                                <p class="text-slate-500 text-sm mt-1">대나무 숲 힐링 산책</p>
                             </div>
                         </div>
                     </div>
@@ -352,7 +412,7 @@
                         <div class="space-y-6">
                             <div class="bg-orange-50 p-5 rounded-2xl border border-orange-100 mb-4">
                                 <h5 class="font-bold text-orange-900 mb-1 flex items-center gap-2"><i class="fa-solid fa-camera text-orange-500"></i> 핵심 포인트</h5>
-                                <p class="text-sm text-orange-800 leading-relaxed">USJ 일정을 제외하고 역사 문화 탐방에 집중하여 더욱 깊이 있는 여행을 제공합니다.</p>
+                                <p class="text-sm text-orange-800 leading-relaxed">오사카의 역사와 문화를 깊이 있게 탐방하며, 넓은 시야를 기르는 교육적인 여행을 제공합니다.</p>
                             </div>
                             <div class="relative pl-8 border-l-2 border-orange-100">
                                 <div class="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-orange-500"></div>
@@ -392,11 +452,11 @@
     </section>
 
     <!-- 6. Promotional Videos -->
-    <section class="py-16 bg-slate-900">
+    <section id="video" class="py-16 bg-slate-900">
         <div class="container mx-auto px-4">
             <div class="text-center mb-10 text-white">
                 <h2 class="text-2xl font-bold">🎬 미리 만나는 오사카</h2>
-                <p class="text-slate-400 text-sm mt-2">수학여행의 설렘을 더해줄 고화질 홍보 영상입니다.</p>
+                <p class="text-slate-400 text-sm mt-2">수학여행의 설렘을 더해줄 고화질 영상입니다.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                 <div class="space-y-3">
@@ -407,7 +467,6 @@
                 </div>
                 <div class="space-y-3">
                     <div class="aspect-video rounded-3xl overflow-hidden shadow-2xl border border-slate-700">
-                        <!-- Updated Video -->
                         <iframe class="w-full h-full" src="https://www.youtube.com/embed/vWu_BID3uG4" title="Kyoto Travel" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                     <p class="text-center text-slate-300 font-bold text-sm">🇯🇵 천년의 고도, 교토의 숨결</p>
@@ -416,7 +475,7 @@
         </div>
     </section>
 
-    <!-- 7. Checklist & Memo (Restored Feature) -->
+    <!-- 7. Checklist & Memo -->
     <section id="check" class="py-16 bg-white border-t border-slate-100">
         <div class="container mx-auto px-4">
             <div class="text-center mb-10">
@@ -426,7 +485,10 @@
             <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                 <!-- Checklist -->
                 <div class="bg-blue-50 p-6 rounded-2xl border border-blue-100">
-                    <h3 class="font-bold text-lg mb-4 text-blue-900">✅ 필수 준비물</h3>
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="font-bold text-lg text-blue-900">✅ 필수 준비물</h3>
+                        <button onclick="resetChecklist()" class="text-xs text-slate-500 underline hover:text-red-500 transition-colors bg-white px-2 py-1 rounded border border-slate-200">[초기화]</button>
+                    </div>
                     <div id="checklist-container" class="space-y-2">
                         <!-- JS Generated -->
                     </div>
@@ -440,7 +502,7 @@
         </div>
     </section>
 
-    <!-- 8. Emergency Contact (Restored & Enhanced) -->
+    <!-- 8. Emergency Contact -->
     <section id="contact" class="py-12 bg-slate-50">
         <div class="container mx-auto px-4">
             <div class="text-center mb-8">
@@ -521,6 +583,7 @@
         }
 
         // Checklist Logic
+        const CHECK_KEY = 'mungok_osaka_checklist_v5'; 
         const CHECK_ITEMS = [
             '여권 (유효기간 6개월 이상)',
             '돼지코 (110V 어댑터)',
@@ -532,12 +595,11 @@
             '보조배터리',
         ];
 
-        (function(){
+        function renderChecklist(){
             const container = document.getElementById('checklist-container');
             if(!container) return;
 
-            const KEY = 'mungok_osaka_checklist_v5'; // Version Up
-            const saved = JSON.parse(localStorage.getItem(KEY) || '{}');
+            const saved = JSON.parse(localStorage.getItem(CHECK_KEY) || '{}');
 
             container.innerHTML = CHECK_ITEMS.map((label, idx) => {
                 const id = `chk_${idx}`;
@@ -552,11 +614,24 @@
 
             container.querySelectorAll('input[type=checkbox]').forEach(cb => {
                 cb.addEventListener('change', () => {
-                    saved[cb.id] = cb.checked;
-                    localStorage.setItem(KEY, JSON.stringify(saved));
+                    const currentSaved = JSON.parse(localStorage.getItem(CHECK_KEY) || '{}');
+                    currentSaved[cb.id] = cb.checked;
+                    localStorage.setItem(CHECK_KEY, JSON.stringify(currentSaved));
                 });
             });
-        })();
+        }
+        
+        // Reset Function
+        function resetChecklist(){
+            if(confirm('체크리스트를 초기화하시겠습니까?\n체크된 항목이 모두 해제됩니다.')){
+                localStorage.removeItem(CHECK_KEY);
+                renderChecklist();
+            }
+        }
+
+        // Init Checklist
+        renderChecklist();
+
 
         // Memo Logic
         (function(){
