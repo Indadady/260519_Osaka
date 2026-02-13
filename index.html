@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- 🚨 Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JLH9GD9SVR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-JLH9GD9SVR');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[문곡중] 오사카/교토/나라 역사문화탐방 4일 - 스마트 가이드</title>
+    
+    <!-- SEO & Open Graph -->
+    <meta name="description" content="문곡중학교 오사카/고베/교토/나라 3박 4일 역사문화탐방 공식 스마트 가이드북">
+    <meta property="og:title" content="[문곡중] 🇯🇵 오사카 역사문화탐방 가이드북">
+    <meta property="og:image" content="https://storage.googleapis.com/explorest-photo-asia/japan/tshibata-osaka-castle-compressed.jpg">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Leaflet CSS (Map) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Nanum+Myeongjo:wght@700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color: #1e293b; }
+        .hero-bg { 
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('https://storage.googleapis.com/explorest-photo-asia/japan/tshibata-osaka-castle-compressed.jpg');
+            background-size: cover; background-position: center; background-attachment: fixed;
+        }
+        @media (max-width: 768px){ .hero-bg { background-attachment: scroll; } }
+        #map { height: 500px; width: 100%; border-radius: 1rem; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        section { scroll-margin-top: 80px; }
+        
+        /* Map Customization */
+        .custom-icon div {
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
+        }
+        .custom-icon div:hover {
+            transform: scale(1.1);
+            z-index: 100;
+        }
+    </style>
+</head>
+<body class="antialiased pb-20 md:pb-0">
+
+    <!-- Header -->
+    <header class="bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-4 flex items-center justify-between h-16">
+            <div class="flex items-center gap-2">
+                <a href="http://tourmaker.kr" target="_blank">
+                    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEitI-Z-hD82keOJ1AqHw-VTZjpw2U-O5UjtV9h3zblyG0wjsVfBWe9X9o0Q_Spctrt7krkd9qXO0xKTmGJLw4gyMZrRqpshKMFttnyx6OcC8-IGz3XLUZpGQOnRqVdol8jz5HuoDLqsEifnVRhcjUJHm13Sz8JrX9aPswMNUwZPvGtJEnQjhc2PiXlo-B8" alt="Tourmaker" class="h-8">
+                </a>
+                <span id="d-day-badge" class="hidden bg-blue-600 text-white text-[10px] px-2 py-0.5 rounded-full font-bold animate-pulse"></span>
+            </div>
+            <div class="hidden md:flex space-x-6 text-sm font-medium text-slate-600">
+                <a href="#home" class="hover:text-blue-600">홈</a>
+                <a href="#map-section" class="hover:text-blue-600">여행동선</a>
+                <a href="#schedule" class="hover:text-blue-600">상세일정</a>
+                <a href="#check" class="hover:text-blue-600">준비물</a>
+                <a href="#contact" class="hover:text-blue-600">비상연락</a>
+            </div>
+            <button onclick="shareLink()" class="p-2 text-slate-500 hover:text-blue-600"><i class="fa-solid fa-share-nodes text-xl"></i></button>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section id="home" class="hero-bg min-h-[65vh] flex items-center justify-center text-center px-4">
+        <div class="animate-fade-in-up text-white">
+            <span class="bg-blue-600/90 px-4 py-1 rounded-full text-xs font-bold mb-4 inline-block border border-white/20">문곡중학교 해외문화탐방</span>
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg font-[Nanum Myeongjo]">오사카 · 교토 · 나라<br><span class="text-yellow-400 font-bold">역사의 숨결을 찾아</span></h1>
+            <p class="text-lg md:text-xl text-slate-100 font-light tracking-wide">2026.05.19(화) ~ 05.22(금) | 3박 4일</p>
+        </div>
+    </section>
+
+    <!-- 1. Google Style Map -->
+    <section id="map-section" class="py-16 bg-white rounded-t-3xl -mt-10 relative z-10">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-slate-800 tracking-tight">한눈에 보는 여행 동선</h2>
+                <p class="text-slate-500 mt-2">간사이 공항에서 오사카 만을 따라 이동하는 실제 경로를 확인하세요.</p>
+            </div>
+            <div class="max-w-5xl mx-auto border border-slate-200 rounded-2xl p-1 shadow-lg bg-white">
+                <div id="map"></div>
+            </div>
+            <!-- Map Legend -->
+            <div class="max-w-5xl mx-auto mt-4 flex flex-wrap justify-center gap-4 text-xs font-bold text-slate-600">
+                <div class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-blue-600"></span>주요 방문지</div>
+                <div class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-orange-500"></span>선택 관광(USJ/나라)</div>
+                <div class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-slate-500"></span>공항/숙소</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Practical Info -->
+    <section id="info" class="py-12 bg-slate-50">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                    <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2"><i class="fa-solid fa-cloud-sun text-blue-500"></i> 5월 오사카 날씨</h3>
+                    <div class="space-y-2 text-sm">
+                        <p class="flex justify-between"><span>평균 기온</span><span class="font-bold">15°C ~ 25°C</span></p>
+                        <p class="text-slate-500 text-xs leading-relaxed">여행하기 가장 좋은 쾌적한 봄 날씨입니다. 일교차에 대비한 얇은 겉옷을 준비하세요.</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                    <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2"><i class="fa-solid fa-yen-sign text-orange-500"></i> 실시간 엔화 환율</h3>
+                    <a href="https://finance.naver.com/marketindex/exchangeDetail.naver?marketindexCd=FX_JPYKRW" target="_blank" class="block bg-slate-100 hover:bg-blue-600 hover:text-white transition-all text-center py-3 rounded-xl font-bold text-sm">
+                        네이버 실시간 환율 확인 <i class="fa-solid fa-chevron-right text-[10px] ml-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Culture & History -->
+    <section id="culture" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-10">
+                    <span class="text-blue-600 font-black tracking-widest text-xs">HUMANITIES GUIDE</span>
+                    <h2 class="text-3xl font-bold mt-2">알고 가면 더 깊어지는 일본 이야기</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-4">
+                        <div class="bg-indigo-50 p-6 rounded-2xl border border-indigo-100">
+                            <h4 class="font-bold text-indigo-900 mb-2">백제 문화의 숨결, 나라/교토</h4>
+                            <p class="text-sm text-indigo-800/80 leading-relaxed italic">"일본 고대 문화의 뿌리에는 한반도 도래인들의 기술과 예술이 녹아 있습니다. 세계 최대 목조 건축물인 동대사를 보며 조상들의 지혜를 상상해 보세요."</p>
+                        </div>
+                        <div class="bg-red-50 p-6 rounded-2xl border border-red-100">
+                            <h4 class="font-bold text-red-900 mb-2">아픈 역사의 현장, 귀무덤(이총)</h4>
+                            <p class="text-sm text-red-800/80 leading-relaxed italic">"임진왜란 당시 희생된 조선인들의 넋이 잠든 곳입니다. 단순한 관광을 넘어 올바른 역사 의식을 고취하는 소중한 배움의 장입니다."</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="bg-amber-50 p-6 rounded-2xl border border-amber-100">
+                            <h4 class="font-bold text-amber-900 mb-2">도시샤 대학과 윤동주 시인</h4>
+                            <p class="text-sm text-amber-800/80 leading-relaxed italic">"민족 시인 윤동주와 정지용이 공부했던 교정입니다. 하늘과 바람과 별과 시를 읊으며 조국을 그리워했던 그들의 청춘을 마주해 봅니다."</p>
+                        </div>
+                        <div class="bg-blue-50 p-6 rounded-2xl border border-blue-100">
+                            <h4 class="font-bold text-blue-900 mb-2">현대 일본의 심장, 오사카</h4>
+                            <p class="text-sm text-blue-800/80 leading-relaxed italic">"천하의 부엌이라 불리는 식도락의 도시이자 활기찬 상업 도시입니다. 에도 시대부터 이어진 오사카 특유의 에너지를 체험해 보세요."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Detailed Schedule -->
+    <section id="schedule" class="py-16 bg-slate-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex overflow-x-auto no-scrollbar gap-2 mb-8 justify-start md:justify-center">
+                    <button class="tab-btn active shrink-0 px-6 py-3 rounded-2xl border-2 border-blue-600 bg-blue-600 text-white font-bold text-sm transition" onclick="openTab(event, 'day1')">1일차</button>
+                    <button class="tab-btn shrink-0 px-6 py-3 rounded-2xl border-2 border-slate-200 bg-white text-slate-500 font-bold text-sm transition" onclick="openTab(event, 'day2')">2일차</button>
+                    <button class="tab-btn shrink-0 px-6 py-3 rounded-2xl border-2 border-slate-200 bg-white text-slate-500 font-bold text-sm transition" onclick="openTab(event, 'day3')">3일차</button>
+                    <button class="tab-btn shrink-0 px-6 py-3 rounded-2xl border-2 border-slate-200 bg-white text-slate-500 font-bold text-sm transition" onclick="openTab(event, 'day4')">4일차</button>
+                </div>
+
+                <div class="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
+                    <!-- Day 1 -->
+                    <div id="day1" class="tab-content animate-fade-in-up p-8">
+                        <div class="flex items-center gap-4 mb-6">
+                            <span class="text-4xl bg-blue-100 p-3 rounded-2xl">⚓</span>
+                            <div>
+                                <h3 class="font-bold text-2xl text-slate-800">낭만의 항구도시 고베 탐방</h3>
+                                <p class="text-blue-600 font-medium">인천-오사카-고베-오사카</p>
+                            </div>
+                        </div>
+                        <div class="space-y-6">
+                            <div class="relative pl-8 border-l-2 border-blue-100">
+                                <div class="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-blue-600"></div>
+                                <h4 class="font-bold text-lg">09:40 인천 출발 / 11:50 오사카 도착</h4>
+                                <p class="text-slate-500 text-sm mt-1">에어부산 BX172편 이용, 입국 심사 후 가이드 미팅</p>
+                            </div>
+                            <div class="relative pl-8 border-l-2 border-blue-100">
+                                <div class="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-blue-200"></div>
+                                <h4 class="font-bold text-lg">롯코산 가든테라스 & 케이블카</h4>
+                                <p class="text-slate-500 text-sm mt-1">고베 시내와 바다를 한눈에 조망하는 고베의 상징</p>
+                            </div>
+                            <div class="relative pl-8 border-l-2 border-blue-100">
+                                <div class="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-blue-200"></div>
+                                <h4 class="font-bold text-lg">메모리얼 파크 (메리켄 파크)</h4>
+                                <p class="text-slate-500 text-sm mt-1">고베 대지진의 흔적을 보존한 역사와 교훈의 공간</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Day 2 -->
+                    <div id="day2" class="tab-content hidden animate-fade-in-up p-8">
+                        <div class="flex items-center gap-4 mb-6">
+                            <span class="text-4xl bg-amber-100 p-3 rounded-2xl">📚</span>
+                            <div>
+                                <h3 class="font-bold text-2xl text-slate-800">천년의 고도 교토와 민족의 얼</h3>
+                                <p class="text-amber-600 font-medium">교토 역사/문학 집중 탐방</p>
+                            </div>
+                        </div>
+                        <div class="space-y-6">
+                            <div class="bg-indigo-50 p-5 rounded-2xl border border-indigo-100 mb-4">
+                                <h5 class="font-bold text-indigo-900 mb-1 flex items-center gap-2"><i class="fa-solid fa-star text-amber-500"></i> 문학 탐방: 도시샤 대학</h5>
+                                <p class="text-sm text-indigo-800 leading-relaxed">윤동주 · 정지용 시비 탐방 및 교정 탐방. 일제강점기 청년들의 고뇌를 느껴봅니다.</p>
+                            </div>
+                            <div class="relative pl-8 border-l-2 border-amber-100">
+                                <div class="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-amber-600"></div>
+                                <h4 class="font-bold text-lg">귀무덤(이총) & 청수사(기요미즈데라)</h4>
+                                <p class="text-slate-500 text-sm mt-1">역사적 슬픔의 장소와 세계문화유산인 천년 고찰 관람</p>
+                            </div>
+                            <div class="relative pl-8 border-l-2 border-amber-100">
+                                <div class="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-amber-200"></div>
+                                <h4 class="font-bold text-lg">아라시야마 치쿠린 & 도게츠교</h4>
+                                <p class="text-slate-500 text-sm mt-1">힐링의 대나무 숲길과 전통적인 감성이 가득한 다리</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Day 3 -->
+                    <div id="day3" class="tab-content hidden animate-fade-in-up p-8">
+                        <div class="flex items-center gap-4 mb-6">
+                            <span class="text-4xl bg-orange-100 p-3 rounded-2xl">🎢</span>
+                            <div>
+                                <h3 class="font-bold text-2xl text-slate-800">학생들의 꿈, 오사카와 나라</h3>
+                                <p class="text-orange-600 font-medium">역사 체험 vs 테마파크 선택 일정</p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="border-2 border-slate-100 rounded-2xl p-6 bg-slate-50">
+                                <h4 class="font-bold mb-4 border-b pb-2">1안: 역사문화 핵심 코스</h4>
+                                <ul class="text-sm space-y-3 text-slate-600">
+                                    <li>• 나라 동대사 & 사슴공원 체험</li>
+                                    <li>• 오사카성(천수각) 관람</li>
+                                    <li>• 하루카스 300 전망대</li>
+                                    <li>• 도톤보리 & 신사이바시 자유시간</li>
+                                </ul>
+                            </div>
+                            <div class="border-2 border-yellow-400 rounded-2xl p-6 bg-yellow-50 relative">
+                                <span class="absolute top-4 right-4 bg-yellow-400 text-white text-[10px] px-2 py-0.5 rounded font-black">학생 선호 1위</span>
+                                <h4 class="font-bold mb-4 border-b border-yellow-200 pb-2">2안: 유니버셜 스튜디오(USJ)</h4>
+                                <ul class="text-sm space-y-3 text-slate-700">
+                                    <li class="font-bold text-orange-600">• 전일 테마파크 자유 일정</li>
+                                    <li>• 해리포터, 슈퍼마리오 월드 등</li>
+                                    <li class="text-xs text-red-500 mt-4 leading-relaxed bg-white p-2 rounded-xl border border-red-100 font-medium">※ 1안 대비 입장료 및 기타 제반 비용 등 추가 요금이 발생합니다.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Day 4 -->
+                    <div id="day4" class="tab-content hidden animate-fade-in-up p-8 text-center">
+                        <div class="flex items-center gap-4 mb-6 justify-center">
+                            <span class="text-4xl bg-green-100 p-3 rounded-2xl">🇰🇷</span>
+                            <div class="text-left">
+                                <h3 class="font-bold text-2xl text-slate-800">아쉬움을 뒤로하고 인천으로</h3>
+                                <p class="text-green-600 font-medium">안전한 귀가 길</p>
+                            </div>
+                        </div>
+                        <p class="text-slate-600 mb-8 leading-relaxed">3박 4일간의 소중한 경험과 추억을 가득 안고<br>문곡중학교 학생들의 미래를 응원하며 일정을 마무리합니다.</p>
+                        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 inline-block text-left">
+                            <p class="text-sm"><strong>12:50</strong> 오사카 간사이 출발 (BX171)</p>
+                            <p class="text-sm mt-2"><strong>15:00</strong> 인천 국제공항 도착 및 해산</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Promotional Videos -->
+    <section class="py-16 bg-slate-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-10 text-white">
+                <h2 class="text-2xl font-bold">🎬 미리 만나는 오사카</h2>
+                <p class="text-slate-400 text-sm mt-2">수학여행의 설렘을 더해줄 고화질 홍보 영상입니다.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="space-y-3">
+                    <div class="aspect-video rounded-3xl overflow-hidden shadow-2xl border border-slate-700">
+                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/Xg2aoWcLiFU" title="Osaka Guide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <p class="text-center text-slate-300 font-bold text-sm">🇯🇵 오사카 종합 안내</p>
+                </div>
+                <div class="space-y-3">
+                    <div class="aspect-video rounded-3xl overflow-hidden shadow-2xl border border-slate-700">
+                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/Qqsp0ck6AQA" title="USJ Guide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <p class="text-center text-slate-300 font-bold text-sm">🎢 유니버셜 스튜디오 재팬</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Checklist & Memo (Restored Feature) -->
+    <section id="check" class="py-16 bg-white border-t border-slate-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl font-bold text-slate-800">준비물 체크리스트 & 메모</h2>
+                <p class="text-sm text-slate-500 mt-1">잊지 말고 꼭 챙기세요! (내용은 자동 저장됩니다)</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Checklist -->
+                <div class="bg-blue-50 p-6 rounded-2xl border border-blue-100">
+                    <h3 class="font-bold text-lg mb-4 text-blue-900">✅ 필수 준비물</h3>
+                    <div id="checklist-container" class="space-y-2">
+                        <!-- JS Generated -->
+                    </div>
+                </div>
+                <!-- Memo -->
+                <div class="bg-yellow-50 p-6 rounded-2xl border border-yellow-100 shadow-sm">
+                    <h3 class="font-bold text-lg mb-4 text-yellow-800">📝 나만의 메모장</h3>
+                    <textarea id="travel-memo" class="w-full h-64 bg-white p-4 rounded-lg border border-yellow-200 text-slate-700 resize-none focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="용돈 계획, 사야할 기념품, 친구들과 약속 등 잊으면 안 되는 내용을 적어두세요."></textarea>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Emergency Contact (Restored & Enhanced) -->
+    <section id="contact" class="py-12 bg-slate-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-slate-800">🚨 비상 연락망</h2>
+                <p class="text-sm text-slate-500 mt-1">위급 상황 시 아래 번호로 연락주세요.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <!-- Embassy -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-center items-center text-center hover:border-red-500 transition-colors">
+                    <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-3">
+                        <i class="fa-solid fa-building-flag text-red-600 text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-800 text-lg">주오사카 대한민국 총영사관</h4>
+                    <p class="text-sm text-slate-500 mt-2">근무시간: +81-6-4256-2345</p>
+                    <p class="text-sm text-red-600 font-bold mt-1">야간/휴일: +81-90-1214-4931</p>
+                </div>
+                <!-- Tourmaker Staff -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-center items-center text-center hover:border-blue-500 transition-colors">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-3">
+                        <i class="fa-solid fa-user-shield text-blue-600 text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-800 text-lg">투어메이커 담당자</h4>
+                    <div class="mt-2 space-y-1">
+                        <p class="text-sm font-medium">이재명 대표: <a href="tel:010-9443-7881" class="text-blue-600">010-9443-7881</a></p>
+                        <p class="text-sm font-medium">조혁 이사: <a href="tel:010-4249-4026" class="text-blue-600">010-4249-4026</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white py-12 border-t border-slate-100 text-center">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-center gap-4 mb-8">
+                <img src="https://blogger.googleusercontent.com/img/a/AVvXsEitI-Z-hD82keOJ1AqHw-VTZjpw2U-O5UjtV9h3zblyG0wjsVfBWe9X9o0Q_Spctrt7krkd9qXO0xKTmGJLw4gyMZrRqpshKMFttnyx6OcC8-IGz3XLUZpGQOnRqVdol8jz5HuoDLqsEifnVRhcjUJHm13Sz8JrX9aPswMNUwZPvGtJEnQjhc2PiXlo-B8" alt="Tourmaker" class="h-10">
+                <div class="text-left">
+                    <p class="text-xs text-slate-400">여행 기획 및 기술 지원</p>
+                    <p class="text-sm font-bold text-slate-800">TOURMAKER (투어메이커)</p>
+                </div>
+            </div>
+            
+            <p class="text-[12px] md:text-[13px] text-[#6c757d] font-normal mb-8 max-w-2xl mx-auto leading-relaxed">
+                [System Powered by TOURMAKER] 본 스마트 가이드북은 **문곡중학교**의 기획과 <a href="http://tourmaker.kr" target="_blank" class="font-bold text-[#6c757d] hover:text-blue-600 underline underline-offset-2">투어메이커</a>의 트래블 테크 기술 제휴로 제작되었습니다.
+            </p>
+
+            <div class="mb-12">
+                <a href="http://tourmaker.kr" target="_blank" class="inline-block border-2 border-slate-800 rounded-2xl px-8 py-4 bg-white text-slate-800 font-black hover:bg-slate-800 hover:text-white transition-all shadow-xl hover:shadow-2xl">
+                    👉 <span class="mr-2">투어메이커</span> 공식 홈페이지 방문하기
+                </a>
+            </div>
+            
+            <p class="text-[10px] text-slate-300">&copy; 2026 Tourmaker Inc. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        function openTab(evt, tabId){
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active','bg-blue-600','text-white','border-blue-600');
+                btn.classList.add('bg-white','text-slate-500','border-slate-200');
+            });
+            document.getElementById(tabId)?.classList.remove('hidden');
+            evt.currentTarget.classList.add('active','bg-blue-600','text-white','border-blue-600');
+            evt.currentTarget.classList.remove('bg-white','text-slate-500','border-slate-200');
+        }
+
+        function shareLink(){
+            const url = window.location.href;
+            if (navigator.share) {
+                navigator.share({ title: '[문곡중] 오사카 가이드북', url }).catch(()=>{});
+            } else {
+                navigator.clipboard?.writeText(url).then(()=>alert('링크가 복사되었습니다.'));
+            }
+        }
+
+        // Checklist Logic
+        const CHECK_ITEMS = [
+            '여권 (유효기간 6개월 이상)',
+            '돼지코 (110V 어댑터)',
+            '작은 우산 또는 우비',
+            '개인 상비약 (소화제, 멀미약)',
+            '엔화 환전 (간식/기념품용)',
+            '편한 운동화',
+            '세면도구 (치약, 칫솔)',
+            '보조배터리',
+        ];
+
+        (function(){
+            const container = document.getElementById('checklist-container');
+            if(!container) return;
+
+            const KEY = 'mungok_osaka_checklist_v4'; // Version Up
+            const saved = JSON.parse(localStorage.getItem(KEY) || '{}');
+
+            container.innerHTML = CHECK_ITEMS.map((label, idx) => {
+                const id = `chk_${idx}`;
+                const checked = saved[id] ? 'checked' : '';
+                return `
+                    <label class="flex items-center gap-2 bg-white/80 border border-blue-100 rounded-lg px-3 py-2 cursor-pointer hover:bg-blue-50 transition">
+                        <input type="checkbox" id="${id}" ${checked} class="h-4 w-4 text-blue-600 rounded focus:ring-blue-500">
+                        <span class="text-sm text-slate-700">${label}</span>
+                    </label>
+                `;
+            }).join('');
+
+            container.querySelectorAll('input[type=checkbox]').forEach(cb => {
+                cb.addEventListener('change', () => {
+                    saved[cb.id] = cb.checked;
+                    localStorage.setItem(KEY, JSON.stringify(saved));
+                });
+            });
+        })();
+
+        // Memo Logic
+        (function(){
+            const memo = document.getElementById('travel-memo');
+            if(!memo) return;
+            const KEY = 'mungok_osaka_memo_v4'; // Version Up
+            memo.value = localStorage.getItem(KEY) || '';
+            memo.addEventListener('input', () => {
+                localStorage.setItem(KEY, memo.value);
+            });
+        })();
+
+        // Map Logic (Google/Standard Map Style with Waypoints)
+        let mapInited = false;
+        function initMap(){
+            if(mapInited || !window.L) return;
+            mapInited = true;
+            
+            // Coordinates
+            const spots = {
+                kix: [34.4320, 135.2304],
+                kobe: [34.6850, 135.1888], 
+                kyoto: [35.0262, 135.7601], 
+                nara: [34.6851, 135.8048], 
+                osaka: [34.6937, 135.5022], 
+                usj: [34.6654, 135.4323]
+            };
+
+            const map = L.map('map', { scrollWheelZoom:false });
+            
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; OpenStreetMap &copy; CARTO',
+                maxZoom: 19
+            }).addTo(map);
+
+            // Path 1: Airport -> (Coastal Highway) -> Kobe
+            // Use intermediate points to simulate highway curve around Osaka Bay
+            const kixToKobeRoute = [
+                spots.kix,
+                [34.414, 135.315], // Rinku
+                [34.542, 135.438], // Sakai
+                [34.614, 135.435], // Nanko
+                [34.660, 135.424], // USJ Area (Highway)
+                spots.kobe
+            ];
+            L.polyline(kixToKobeRoute, { color: '#dc2626', weight: 4, opacity: 0.8 }).addTo(map);
+
+            // Path 2: Kobe -> Osaka -> Kyoto
+            L.polyline([spots.kobe, spots.osaka, spots.kyoto], { color: '#2563eb', weight: 4, opacity: 0.8 }).addTo(map);
+            
+            // Path 3: Osaka -> Nara
+            L.polyline([spots.osaka, spots.nara], { color: '#f59e0b', weight: 4, opacity: 0.8 }).addTo(map);
+            
+            // Path 4: Osaka -> USJ
+            L.polyline([spots.osaka, spots.usj], { color: '#f59e0b', weight: 4, opacity: 0.8, dashArray: '5,5' }).addTo(map);
+            
+            // Return: Osaka -> Airport
+            const returnRoute = [spots.osaka, [34.542, 135.438], spots.kix];
+            L.polyline(returnRoute, { color: '#16a34a', weight: 4, opacity: 0.8, dashArray: '5,5' }).addTo(map);
+
+
+            // Markers
+            const createMarker = (latlng, title, color, num) => {
+                const icon = L.divIcon({
+                    className: 'custom-icon',
+                    html: `<div style="background-color:${color}; width:28px; height:28px; border-radius:50%; border:2px solid white; color:white; display:flex; align-items:center; justify-content:center; font-weight:bold; box-shadow:0 2px 5px rgba(0,0,0,0.3);">${num}</div>`,
+                    iconSize: [28, 28]
+                });
+                L.marker(latlng, {icon: icon}).addTo(map).bindPopup(`<b>${title}</b>`);
+            };
+
+            createMarker(spots.kix, '1. 간사이 공항', '#64748b', 'IN');
+            createMarker(spots.kobe, '2. 고베 (1일차)', '#dc2626', '1');
+            createMarker(spots.osaka, '숙소 (오사카)', '#475569', 'H');
+            createMarker(spots.kyoto, '3. 교토 (2일차)', '#2563eb', '2');
+            createMarker(spots.nara, '4. 나라 (3일차)', '#f59e0b', '3');
+            createMarker(spots.usj, 'USJ (선택)', '#f59e0b', 'opt');
+
+            // Fit bounds
+            const bounds = L.latLngBounds(Object.values(spots));
+            map.fitBounds(bounds, { padding: [50, 50] });
+        }
+
+        // D-Day
+        const depart = new Date('2026-05-19');
+        const diff = Math.ceil((depart - new Date()) / (1000*60*60*24));
+        const badge = document.getElementById('d-day-badge');
+        badge.textContent = diff > 0 ? `D-${diff}` : (diff === 0 ? 'D-DAY' : `D+${Math.abs(diff)}`);
+        badge.classList.remove('hidden');
+
+        // Observer for Map
+        const io = new IntersectionObserver((entries)=>{
+            if(entries[0].isIntersecting) { initMap(); io.disconnect(); }
+        }, { threshold: 0.1 });
+        io.observe(document.getElementById('map-section'));
+    </script>
+</body>
+</html>
