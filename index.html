@@ -14,11 +14,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>[사북중] 오사카/교토 역사문화 및 USJ 탐방 4일 - 스마트 가이드</title>
     
-    <!-- SEO & Open Graph (카톡 공유 시 썸네일) -->
+    <!-- SEO & Open Graph -->
     <meta name="description" content="사북중학교 오사카/교토 3박 4일 역사문화 및 글로벌 테마파크 탐방 공식 스마트 가이드북">
-    <meta property="og:title" content="[사북중] 🇯🇵 오사카/교토 탐방 제안서">
+    <meta property="og:title" content="[사북중] 🇯🇵 오사카/교토 탐방 공식 가이드북">
     <meta property="og:description" content="담당 선생님 및 학부모님께 공유드리는 상세 일정 및 교육 프로그램 안내입니다.">
-    <!-- 웹페이지 내 이미지를 og:image로 무조건 사용 -->
     <meta property="og:image" content="https://storage.googleapis.com/explorest-photo-asia/japan/tshibata-osaka-castle-compressed.jpg">
 
     <!-- Tailwind CSS -->
@@ -70,16 +69,9 @@
         @media print {
             @page { size: A4; margin: 15mm; }
             body { background-color: white !important; }
-            /* Hide URL printing in some browsers */
             a[href]:after { content: none !important; }
-            
-            /* 배경색 및 컬러 요소 강제 인쇄 (회색 배경 유지) */
             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-            
-            /* 표의 행(tr)이 페이지 중간에서 반으로 잘리는 현상 방지 */
             table tr { page-break-inside: avoid; break-inside: avoid; }
-            
-            /* 인쇄 시 표 내부 텍스트 가독성(줄간격) 확보 */
             #print-area td { line-height: 1.6; }
         }
     </style>
@@ -113,7 +105,6 @@
                         <a href="#video" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-colors">영상자료</a>
                         <a href="#check" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-colors">준비물</a>
                         <a href="#contact" class="px-3 py-2 text-sm font-medium text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg transition-colors">비상연락망</a>
-                        <a href="#esg" class="px-3 py-2 text-sm font-bold text-emerald-600 hover:text-emerald-800 hover:bg-emerald-50 rounded-lg transition-colors"><i class="fa-solid fa-leaf mr-1"></i>ESG성과</a>
                     </div>
                 </div>
 
@@ -195,7 +186,7 @@
                     </div>
                 </div>
 
-                <!-- Airport Guide (Cheongju Airport Focus) -->
+                <!-- Airport Guide -->
                 <div class="max-w-4xl mx-auto">
                     <div class="bg-white rounded-2xl border border-slate-200 shadow-md p-6 md:p-8">
                         <h3 class="font-bold text-slate-800 text-lg mb-6 flex items-center gap-2">
@@ -289,7 +280,6 @@
                     <p class="text-slate-500 mt-2">일자별 버튼을 클릭하여 그 날의 주요 이동 동선을 상세히 확인해 보세요.</p>
                 </div>
 
-                <!-- 일자별 맵 컨트롤 버튼 -->
                 <div class="flex flex-wrap justify-center gap-2 mb-6 px-2" id="map-controls">
                     <button onclick="changeMapRoute('all')" class="map-btn active px-5 py-2 rounded-full border border-slate-300 bg-slate-800 text-white text-sm font-bold transition shadow-md">전체 여정</button>
                     <button onclick="changeMapRoute('day1')" class="map-btn px-5 py-2 rounded-full border border-slate-300 bg-white text-slate-600 hover:bg-slate-50 text-sm font-bold transition">1일차</button>
@@ -313,7 +303,6 @@
                         <span class="inline-block bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full font-bold shadow-sm mb-3">EDUCATION & TOUR</span>
                         <h2 class="text-3xl font-bold text-slate-800">일자별 상세일정</h2>
                         
-                        <!-- 일정표 인쇄하기 버튼 -->
                         <button onclick="window.print()" class="mt-6 md:mt-0 md:absolute md:right-0 md:top-1/2 md:-translate-y-1/2 bg-slate-800 hover:bg-slate-700 text-white text-sm font-bold py-2.5 px-5 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 mx-auto md:mx-0 active:scale-95">
                             <i class="fa-solid fa-print"></i> 일정표 인쇄하기
                         </button>
@@ -366,7 +355,7 @@
                                 <div class="relative">
                                     <div class="timeline-dot bg-slate-400 ring-slate-100"></div>
                                     <h4 class="font-bold text-lg text-slate-800">🏨 호텔 투숙 및 휴식</h4>
-                                    <p class="text-slate-500 text-sm mt-2">사라사 호텔 도톤보리 또는 IP CITY OSAKA 동급 (2인 1실) 체크인 후 충분한 휴식</p>
+                                    <p class="text-slate-500 text-sm mt-2">웰리나 프리미어 나카노시마 웨스트 또는 동급 (2인 1실) 체크인 후 충분한 휴식</p>
                                 </div>
                             </div>
                         </div>
@@ -434,7 +423,7 @@
                             <div class="bg-pink-50 border border-pink-100 p-4 rounded-xl mb-6">
                                 <p class="text-sm text-pink-800 font-bold"><i class="fa-solid fa-file-pen text-pink-600"></i> 사북중학교 선생님 기획 노트</p>
                                 <p class="text-sm text-pink-700 mt-1 leading-relaxed">
-                                    우리 사북중 학생들이 가장 기대하는 USJ에서 <strong>1분이라도 더 신나게 놀 수 있도록 체류 시간을 최대로 확보</strong>했습니다! 점심은 취향껏 자유롭게 즐길 수 있도록 <strong>학생 1인당 2,000엔을 현금으로 지급</strong>합니다. 단, 저녁 시간대 파크 내부 식당은 대기가 길고 가성비가 떨어질 수 있어, 파크 외부의 현지 맛집에서 대기 없이 편안하고 든든하게 먹을 수 있도록 <strong>저희 선생님들이 직접 꼼꼼하게 동선을 재구성</strong>했습니다. 현지 가이드와 인솔 선생님들은 파크 내 지정 베이스캠프에 상시 대기조로 있을 예정이니 안심하고 맘껏 즐기면 됩니다.
+                                    우리 사북중 학생들이 가장 기대하는 USJ에서 <strong>1분이라도 더 신나게 놀 수 있도록 체류 시간을 최대로 확보</strong>했습니다! 가이드는 입구까지만 동행하여 학생들의 온전한 자유시간을 보장하며, 점심은 취향껏 자유롭게 즐길 수 있도록 <strong>학생 1인당 2,000엔을 현금으로 지급</strong>합니다. 인솔 선생님과 현지 가이드는 파크 내 지정 베이스캠프에 상시 대기조로 머물며 학생들의 안전을 책임집니다. 17시 미팅 후 저녁 식사는 파크 외부의 현지 맛집에서 대기 없이 편안하게 먹을 수 있도록 꼼꼼하게 동선을 재구성했습니다.
                                 </p>
                             </div>
                             
@@ -450,7 +439,7 @@
                                     <div class="timeline-dot bg-pink-500 ring-pink-100"></div>
                                     <h4 class="font-bold text-lg text-slate-800">🚌 08:30 호텔 조식 후 전용 버스로 이동</h4>
                                     <p class="text-slate-600 text-sm mt-2 leading-relaxed mb-3">
-                                        아침 일찍 든든하게 식사를 마치고, 개장 시간에 맞춰 유니버셜 스튜디오 재팬으로 신속하게 이동합니다. (가이드는 입구까지만 안내 후 지정 베이스캠프로 이동)
+                                        아침 일찍 든든하게 식사를 마치고, 개장 시간에 맞춰 유니버셜 스튜디오 재팬으로 신속하게 이동합니다. (가이드는 파크 입구까지만 안내합니다)
                                     </p>
                                 </div>
                                 
@@ -482,7 +471,7 @@
                                         <ul class="text-slate-700 text-xs mt-1 font-medium space-y-1 ml-1">
                                             <li><strong class="text-pink-600">✔ 스마트폰 앱 활용:</strong> USJ 공식 앱(사전 설치 요망)을 통해 대기 시간 및 지도 실시간 확인</li>
                                             <li><strong class="text-pink-600">✔ 중식 식비 2,000엔 지급:</strong> 지급된 현금으로 파크 내 다양한 식당 및 스낵 코너에서 조별 자율 중식 진행</li>
-                                            <li><strong class="text-pink-600">✔ 안전 대기조 운영:</strong> 담당 가이드와 선생님은 파크 내 지정된 장소에서 상시 대기하며 연락 체계 유지</li>
+                                            <li><strong class="text-pink-600">✔ 안전 대기조 운영:</strong> 담당 가이드와 선생님은 파크 내 지정된 장소에서 상시 대기하며 비상 연락망 유지</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -542,19 +531,19 @@
             <div class="container mx-auto px-4">
                 <div class="text-center mb-10">
                     <span class="text-indigo-600 font-black tracking-widest text-xs uppercase">ACCOMMODATION</span>
-                    <h2 class="text-3xl font-bold text-slate-800 mt-2">사라사 호텔 도톤보리 (또는 동급)</h2>
-                    <p class="text-sm text-slate-500 mt-2">안전하고 쾌적하게 쉴 수 있는 3박 4일간의 베이스캠프입니다.</p>
+                    <h2 class="text-3xl font-bold text-slate-800 mt-2">웰리나 프리미어 나카노시마 웨스트</h2>
+                    <p class="text-sm text-slate-500 mt-2">또는 동급 기준 (안전하고 쾌적하게 쉴 수 있는 3박 4일간의 베이스캠프입니다.)</p>
                 </div>
 
                 <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                     <!-- Hotel Images (Left/Top) -->
                     <div class="lg:col-span-5 space-y-4">
                         <div class="rounded-2xl overflow-hidden shadow-lg border border-slate-100 relative group">
-                            <img src="https://tse3.mm.bing.net/th/id/OIP.ub7PqmRXGv-NnxxJWyrvdQHaE7?w=474&h=379&c=7&p=0" alt="사라사 호텔 외관" class="w-full h-64 object-cover transform transition duration-500 group-hover:scale-105">
-                            <div class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs px-2 py-1 rounded">호텔 외관</div>
+                            <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/338275323.jpg?k=b4e9f78ccf5d4a4604d57053e14c1eb25883ef0e2efc18758810b4deef2227d8&o=&hp=1" alt="웰리나 프리미어 나카노시마 웨스트 외관" class="w-full h-64 object-cover transform transition duration-500 group-hover:scale-105">
+                            <div class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs px-2 py-1 rounded">호텔 외관/로비</div>
                         </div>
                         <div class="rounded-2xl overflow-hidden shadow-lg border border-slate-100 relative group">
-                            <img src="https://visitgayosaka.com/content/images/Hotel/SARASA_HOTEL_Dotonbori/1.jpg" alt="사라사 호텔 객실" class="w-full h-48 object-cover transform transition duration-500 group-hover:scale-105">
+                            <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/338275150.jpg?k=33d7b275253df6c63b154a49c90b6a482381f9640abfb4cd35b0b1473cd6d45e&o=&hp=1" alt="웰리나 프리미어 객실" class="w-full h-48 object-cover transform transition duration-500 group-hover:scale-105">
                             <div class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs px-2 py-1 rounded">객실 내부 (예시)</div>
                         </div>
                     </div>
@@ -566,15 +555,15 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                             <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
                                 <p class="text-xs font-bold text-slate-400 mb-1 flex items-center gap-1"><i class="fa-solid fa-location-dot text-indigo-500"></i> 주소</p>
-                                <p class="text-sm text-slate-700 font-medium">오사카시 주오구 시마노우치 2-9-6</p>
+                                <p class="text-sm text-slate-700 font-medium">오사카시 니시구 에도보리 1-17-22</p>
                             </div>
                             <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
                                 <p class="text-xs font-bold text-slate-400 mb-1 flex items-center gap-1"><i class="fa-solid fa-phone text-indigo-500"></i> 전화번호</p>
-                                <p class="text-sm text-slate-700 font-medium">06-6212-6840</p>
+                                <p class="text-sm text-slate-700 font-medium">+81-6-6441-0001</p>
                             </div>
                             <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
                                 <p class="text-xs font-bold text-slate-400 mb-1 flex items-center gap-1"><i class="fa-solid fa-train-subway text-indigo-500"></i> 위치 및 접근성</p>
-                                <p class="text-sm text-slate-700 font-medium">니혼바시역 도보 5~7분 소요. 도톤보리 이동에 매우 유리합니다.</p>
+                                <p class="text-sm text-slate-700 font-medium">히고바시역 도보 3~5분. 오사카 주요 시내 이동에 유리한 비즈니스 밀집 구역입니다.</p>
                             </div>
                             <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
                                 <p class="text-xs font-bold text-slate-400 mb-1 flex items-center gap-1"><i class="fa-regular fa-clock text-indigo-500"></i> 체크인 / 아웃</p>
@@ -583,9 +572,9 @@
                             <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 md:col-span-2">
                                 <p class="text-xs font-bold text-slate-400 mb-1 flex items-center gap-1"><i class="fa-solid fa-mug-hot text-indigo-500"></i> 부대 및 편의 시설</p>
                                 <p class="text-sm text-slate-700 font-medium leading-relaxed">
-                                    [조식] 2층 레스토랑 (뷔페 제공)<br>
-                                    [객실] 전 객실 금연 (별도 흡연 구역 운영)<br>
-                                    [기타] 생수 매일 제공, 24시간 프런트, 코인세탁실 및 제빙기 구비
+                                    [조식] 레스토랑 내 식사 (뷔페 또는 세트 제공)<br>
+                                    [객실] 전 객실 금연 (호텔 내 흡연 구역 제한적 운영)<br>
+                                    [기타] 24시간 프런트 데스크, 무료 Wi-Fi, 쾌적하고 조용한 환경
                                 </p>
                             </div>
                         </div>
@@ -600,7 +589,7 @@
                                 <div>
                                     <h4 class="font-bold text-indigo-900 text-sm mb-1">투어메이커 기획자 노트</h4>
                                     <p class="text-sm text-slate-700 leading-relaxed">
-                                        오사카 번화가인 도톤보리와의 접근성이 뛰어나 학생 통제 및 자유시간 부여에 최적화된 위치입니다. 일본 도심 호텔 특성상 객실 크기가 아주 넓은 편은 아니므로, 객실 배정 시 인원과 캐리어 수를 적절히 고려하여 안내하겠습니다. (최종 수배 현황에 따라 IP CITY OSAKA 등 동급 호텔로 변경될 수 있습니다.)
+                                        기존 도톤보리 중심지 호텔에서 오피스가 밀집한 <strong>나카노시마(히고바시) 지역</strong>으로 숙소가 수배되었습니다. 번화가 특유의 유흥시설이 주변에 없어 학생 통제와 안전 관리에 훨씬 유리한 장점이 있습니다. 오사카 비즈니스 호텔 특성상 객실 크기가 다소 아담할 수 있으나, 학생들의 캐리어 정리와 객실 배정 시 현장에서 세심하게 조율하겠습니다.
                                     </p>
                                 </div>
                             </div>
@@ -769,7 +758,6 @@
                         </span>
                         <h2 class="text-3xl font-bold text-slate-800">📊 ESG 실천 대시보드</h2>
                         <p class="text-slate-600 mt-2 font-medium">
-                            <!-- 단체명 수정하는 곳 -->
                             🌿 <span class="text-emerald-700 font-bold org-name">사북중학교</span>와 함께하는 ESG 실천 성과
                         </p>
                     </div>
@@ -827,7 +815,6 @@
                 </div>
                 
                 <p class="text-[12px] md:text-[13px] text-[#6c757d] font-normal mb-8 max-w-2xl mx-auto leading-relaxed text-center">
-                    <!-- 여행사 제휴 텍스트 룰 준수 -->
                     [System Powered by TOURMAKER] 본 스마트 가이드북은 <strong class="org-name">사북중학교</strong>의 기획과 <a href="http://tourmaker.kr" target="_blank" style="color: #6c757d; text-decoration: underline; font-weight: bold;">투어메이커</a>의 트래블 테크 기술 제휴로 제작되었습니다.
                 </p>
 
@@ -881,7 +868,7 @@
                         ▶ 입국 수속 및 가이드 미팅 후 오사카 시내로 바로 이동<br>
                         ▶ 현지 도착 시간에 맞추어 든든한 <strong>오사카 시내 석식(현지식) 진행</strong><br>
                         ▶ 호텔 투숙 및 안전한 휴식<br>
-                        *HOTEL: 사라사 호텔 도톤보리 또는 IP CITY OSAKA 동급
+                        *HOTEL: 웰리나 프리미어 나카노시마 웨스트 또는 동급
                     </td>
                     <td class="border border-slate-800 py-3 px-2 text-center align-middle text-xs text-slate-700">
                         [조] 불포함<br>
@@ -915,7 +902,7 @@
                         &nbsp;&nbsp;&nbsp;- 1DAY 패스 포함, 가이드는 파크 입구까지만 동행<br>
                         &nbsp;&nbsp;&nbsp;- 학생 1인당 <strong>중식 식비 2,000엔 지급</strong>으로 파크 내 자율 중식<br>
                         &nbsp;&nbsp;&nbsp;- 인솔 교사 및 가이드는 파크 내 지정 장소 대기 (비상연락망 가동)<br>
-                        ▶ 17:00 지정 장소 집결 후 대기 줄이 없는 <strong>파크 외부로 이동하여 석식</strong><br>
+                        ▶ 17:00 가이드 미팅 후 대기 줄이 없는 <strong>파크 외부로 이동하여 석식</strong><br>
                         ▶ 식사 후 호텔 귀환 및 휴식
                     </td>
                     <td class="border border-slate-800 py-3 px-2 text-center align-middle text-xs text-slate-700">
@@ -1052,14 +1039,15 @@
             window.addEventListener('resize', autoResize);
         })();
 
-        // Map Route & Layer Logic (USJ 및 수정된 일정 반영)
+        // Map Route & Layer Logic
         let map;
         let mapLayers = [];
 
         const spots = {
             // Main Hubs
             kix: { coords: [34.4320, 135.2304], title: "간사이 공항", color: "#64748b", icon: "✈️" },
-            osaka: { coords: [34.6937, 135.5022], title: "오사카 시내/호텔", color: "#475569", icon: "🏨" },
+            // 호텔 위치 나카노시마 인근(히고바시) 좌표로 변경
+            osaka: { coords: [34.6908, 135.4950], title: "오사카 시내/호텔", color: "#475569", icon: "🏨" },
             kyoto: { coords: [35.0262, 135.7601], title: "교토 중심가", color: "#2563eb", icon: "⛩️" },
             
             // Detailed Sub-spots
