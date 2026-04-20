@@ -86,8 +86,8 @@
         }
 
         /* =========================================================
-           🖨️ 투어메이커 표준 결재 서류 인쇄 양식 (A4 최적화)
-           ========================================================= */
+            🖨️ 투어메이커 표준 결재 서류 인쇄 양식 (A4 최적화)
+            ========================================================= */
         @media screen { #print-area { display: none !important; } }
         @media print {
             @page { size: A4 portrait; margin: 12mm 10mm; }
@@ -149,7 +149,7 @@
 </head>
 <body class="antialiased pb-20 md:pb-0 print:bg-white">
 
-    <!-- Header (Sticky Navigation - 10 Items Restored) -->
+    <!-- Header (Sticky Navigation) -->
     <header class="bg-white/95 backdrop-blur-md shadow-md sticky top-0 z-50 transition-all duration-300 no-print">
         <nav class="container mx-auto px-4 h-16 flex items-center justify-between">
             <div class="flex items-center gap-3 shrink-0">
@@ -159,7 +159,7 @@
                 <span id="d-day-badge" class="bg-blue-600 text-white text-[10px] px-2.5 py-1 rounded-full font-bold shadow-sm animate-pulse">상태 계산중</span>
             </div>
             
-            <!-- Universal Navigation Menu (10 Items) -->
+            <!-- Universal Navigation Menu -->
             <div class="flex-1 overflow-x-auto no-scrollbar ml-4 md:ml-8">
                 <div class="flex items-center space-x-1 md:space-x-4 whitespace-nowrap pr-4">
                     <a href="#home" class="px-3 py-2 text-sm font-bold text-slate-600 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-colors">홈</a>
@@ -242,7 +242,7 @@
                 </div>
 
                 <!-- Flight Information -->
-                <div class="bg-white rounded-3xl border border-blue-100 shadow-md p-8 mb-10">
+                <div class="bg-white rounded-3xl border border-blue-100 shadow-md p-8 mb-10 overflow-hidden">
                     <div class="flex flex-col md:flex-row gap-6 justify-center items-center">
                         <div class="bg-blue-50 border border-blue-100 rounded-2xl p-6 w-full md:w-1/2 text-center">
                             <span class="text-xs bg-blue-600 text-white px-3 py-1.5 rounded-full font-bold mb-4 inline-block">출국 5.19(화)</span>
@@ -258,7 +258,7 @@
                 </div>
 
                 <!-- Airport Guide -->
-                <div class="bg-white rounded-3xl border border-slate-200 shadow-md p-8">
+                <div class="bg-white rounded-3xl border border-slate-200 shadow-md p-8 overflow-hidden">
                     <h3 class="font-bold text-slate-800 text-xl mb-6 flex items-center gap-2">
                         <i class="fa-solid fa-building-user text-green-600"></i> 청주국제공항 이용 안내
                     </h3>
@@ -571,7 +571,7 @@
                 </div>
                 
                 <div class="aspect-video rounded-3xl overflow-hidden shadow-2xl border border-slate-700 bg-black relative max-w-4xl mx-auto">
-                    <iframe class="w-full h-full absolute top-0 left-0" src="https://www.youtube.com/embed/aPFCcvNwauE" title="Kansai Travel Guide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="w-full h-full absolute top-0 left-0" src="https://www.youtube.com/embed/aPFCcvNwauE?controls=1" title="Kansai Travel Guide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
         </section>
@@ -646,7 +646,7 @@
                     </div>
 
                     <!-- Emergency Contacts (Updated Personnel) -->
-                    <div class="bg-slate-800 text-white p-8 rounded-3xl shadow-md relative overflow-hidden flex flex-col justify-center border border-slate-700">
+                    <div class="bg-slate-800 text-white p-8 rounded-3xl shadow-md relative overflow-hidden flex flex-col justify-center border border-slate-700 w-full min-w-0">
                         <div class="absolute -right-4 -bottom-4 text-8xl text-white/5"><i class="fa-solid fa-headset"></i></div>
                         <span class="text-xs text-blue-300 font-bold mb-2">현장 총괄 인솔 및 가이드 배정</span>
                         <h4 class="font-bold text-2xl mb-6">현장 투어메이커 상황실</h4>
@@ -669,29 +669,44 @@
                 <!-- DX Widgets (Weather, Exchange, Survival JP) -->
                 <div id="widgets" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <!-- Widget 1: Weather -->
-                    <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm">
+                    <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm overflow-hidden flex flex-col w-full min-w-0">
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="font-bold text-slate-800"><i class="fa-solid fa-cloud-sun text-yellow-500 mr-1"></i> 현지 날씨 & 옷차림</h3>
                         </div>
-                        <div id="weather-container" class="flex overflow-x-auto no-scrollbar gap-2 mb-4 bg-slate-50 p-3 rounded-xl border border-slate-100">
-                            <!-- JS Populated -->
-                            <p class="text-xs text-slate-400 p-2">날씨 데이터를 불러오고 있습니다...</p>
+                        
+                        <!-- 🚨 추가된 스크롤 네비게이션 기능 -->
+                        <div class="relative group mb-4">
+                            <button onclick="document.getElementById('weather-container').scrollBy({left: -150, behavior: 'smooth'})" class="absolute -left-3 top-1/2 -translate-y-1/2 bg-white/95 shadow-md rounded-full w-7 h-7 flex items-center justify-center text-slate-500 hover:text-blue-600 hover:bg-blue-50 z-10 hidden md:flex opacity-0 group-hover:opacity-100 transition-opacity border border-slate-200" title="이전 날씨">
+                                <i class="fa-solid fa-chevron-left text-xs"></i>
+                            </button>
+                            
+                            <div id="weather-container" class="flex overflow-x-auto no-scrollbar gap-2 bg-slate-50 p-3 rounded-xl border border-slate-100 w-full min-w-0 scroll-smooth">
+                                <!-- JS Populated -->
+                                <p class="text-xs text-slate-400 p-2">날씨 데이터를 불러오고 있습니다...</p>
+                            </div>
+                            
+                            <button onclick="document.getElementById('weather-container').scrollBy({left: 150, behavior: 'smooth'})" class="absolute -right-3 top-1/2 -translate-y-1/2 bg-white/95 shadow-md rounded-full w-7 h-7 flex items-center justify-center text-slate-500 hover:text-blue-600 hover:bg-blue-50 z-10 hidden md:flex opacity-0 group-hover:opacity-100 transition-opacity border border-slate-200" title="다음 날씨">
+                                <i class="fa-solid fa-chevron-right text-xs"></i>
+                            </button>
                         </div>
+                        
                         <p class="text-[11px] text-slate-600 leading-relaxed font-medium">💡 <strong>5월 옷차림 팁:</strong> 아침저녁 일교차가 크고, 교토 산바람 등에 대비해 <strong>얇은 겉옷(가디건/바람막이)</strong>을 반드시 지참하도록 합니다.</p>
                     </div>
 
                     <!-- Widget 2: Exchange & Prices -->
-                    <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm">
+                    <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm overflow-hidden w-full min-w-0">
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="font-bold text-slate-800"><i class="fa-solid fa-won-sign text-pink-500 mr-1"></i> 체감 환율 & 물가</h3>
                         </div>
-                        <div class="flex items-center gap-2 mb-4 border-b border-slate-100 pb-4">
-                            <div class="relative flex-1">
+                        
+                        <!-- 모바일 input overflow-hidden 및 min-w-0 해결 -->
+                        <div class="flex items-center gap-2 mb-4 border-b border-slate-100 pb-4 w-full min-w-0">
+                            <div class="relative flex-1 min-w-0">
                                 <input type="number" id="jpy-input" placeholder="엔화 입력" oninput="calcKRW()" class="w-full bg-slate-50 border border-slate-200 text-sm font-bold rounded-lg px-2 py-2 text-right focus:ring-1 focus:ring-pink-500 outline-none">
                                 <span class="absolute left-2 top-2 text-slate-400 text-xs">¥</span>
                             </div>
-                            <i class="fa-solid fa-arrow-right text-slate-300 text-xs"></i>
-                            <div class="flex-1 bg-pink-50 text-pink-700 font-bold rounded-lg px-2 py-2 text-right text-sm">
+                            <i class="fa-solid fa-arrow-right text-slate-300 text-xs shrink-0"></i>
+                            <div class="flex-1 bg-pink-50 text-pink-700 font-bold rounded-lg px-2 py-2 text-right text-sm truncate min-w-0">
                                 <span id="krw-output">0</span> 원
                             </div>
                         </div>
@@ -701,7 +716,7 @@
                     </div>
 
                     <!-- Widget 3: Survival Japanese -->
-                    <div class="bg-indigo-600 rounded-3xl p-6 text-white shadow-lg flex flex-col justify-between md:col-span-2 lg:col-span-1">
+                    <div class="bg-indigo-600 rounded-3xl p-6 text-white shadow-lg flex flex-col justify-between md:col-span-2 lg:col-span-1 overflow-hidden w-full min-w-0">
                         <div>
                             <h3 class="font-bold text-lg mb-2"><i class="fa-solid fa-language text-indigo-300 mr-1"></i> 1-Click 생존 일본어</h3>
                             <p class="text-indigo-200 text-xs leading-relaxed mb-6">
@@ -1006,7 +1021,7 @@
                     else if(wCode <= 99) icon = 'fa-cloud-showers-heavy text-blue-500';
 
                     container.innerHTML += `
-                        <div class="flex flex-col items-center bg-white p-2 rounded-lg border border-slate-100 min-w-[55px] shadow-sm shrink-0">
+                        <div class="flex flex-col items-center bg-white p-2 rounded-lg border border-slate-100 min-w-[65px] shadow-sm shrink-0">
                             <span class="text-[9px] text-slate-400 mb-1">${dateStr}</span>
                             <i class="fa-solid ${icon} text-lg mb-1"></i>
                             <span class="text-[10px] font-bold text-slate-700">${minT}°<span class="text-slate-300 mx-0.5">/</span>${maxT}°</span>
@@ -1120,7 +1135,6 @@
 
         // 6. Leaflet Map & Tab Logic (Rules Applied)
         let map, layerGroup;
-        // 추가된 스팟들 (지도 상에 전부 보여주기 위해 세밀화)
         const spots = {
             kix: { c: [34.4320, 135.2304], t: "간사이 국제공항", col: "#64748b", i: "✈️" },
             osaka_hotel: { c: [34.6908, 135.4950], t: "웰리나 프리미어 나카노시마", col: "#1e293b", i: "🏨" },
@@ -1152,7 +1166,8 @@
             layerGroup = L.layerGroup().addTo(map);
             const initialView = window.innerWidth < 1024 ? 'day1' : 'all';
             changeMapAndTab(initialView);
-            setTimeout(() => map.invalidateSize(), 250);
+            // 🚨 BUG FIX: 지도 컨테이너 렌더링 후 사이즈 재조정
+            setTimeout(() => map.invalidateSize(), 300);
         }
 
         function changeMapAndTab(dayId) {
@@ -1219,13 +1234,12 @@
 
             // Rule 2: Timeout after fitBounds
             map.fitBounds(bounds, { padding: [40, 40], maxZoom: 12 });
-            setTimeout(() => { map.invalidateSize(); }, 250);
+            setTimeout(() => { map.invalidateSize(); }, 300);
 
             if (window.innerWidth < 1024 && dayId !== 'all') {
                 document.getElementById(dayId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         }
-
 
         let resizeTimer;
         window.addEventListener('resize', () => {
